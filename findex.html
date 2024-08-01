@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Form Validation Example</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+      }
+
+      input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+      }
+
+      .error {
+        color: red;
+        font-size: 0.8em;
+        height: 1em; /* Ensures consistent spacing */
+      }
+
+      button {
+        width: 100%;
+        padding: 10px;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Registration Form</h1>
+      <form id="registrationForm">
+        <div>
+          <label for="username">Username:</label>
+          <input type="text" id="username" required />
+          <span class="error" id="usernameError"></span>
+        </div>
+        <div>
+          <label for="email">Email:</label>
+          <input type="email" id="email" required />
+          <span class="error" id="emailError"></span>
+        </div>
+        <div>
+          <label for="password">Password:</label>
+          <input type="password" id="password" required />
+          <span class="error" id="passwordError"></span>
+        </div>
+        <div>
+          <label for="confirmPassword">Confirm Password:</label>
+          <input type="password" id="confirmPassword" required />
+          <span class="error" id="confirmPasswordError"></span>
+        </div>
+        <button type="submit">Register</button>
+      </form>
+    </div>
+    <script>
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent form submission
+
+          // Clear previous error messages
+          clearErrors();
+
+          // Validate form fields
+          const username = document.getElementById("username").value.trim();
+          const email = document.getElementById("email").value.trim();
+          const password = document.getElementById("password").value;
+          const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+          let isValid = true;
+
+          // Validate username
+          if (username.length < 3) {
+            showError(
+              "usernameError",
+              "Username must be at least 3 characters long."
+            );
+            isValid = false;
+          }
+
+          // Validate email
+          if (!validateEmail(email)) {
+            showError("emailError", "Please enter a valid email address.");
+            isValid = false;
+          }
+
+          // Validate password
+          if (password.length < 6) {
+            showError(
+              "passwordError",
+              "Password must be at least 6 characters long."
+            );
+            isValid = false;
+          }
+
+          // Validate confirm password
+          if (password !== confirmPassword) {
+            showError("confirmPasswordError", "Passwords do not match.");
+            isValid = false;
+          }
+
+          // If the form is valid, you can submit it or perform further actions
+          if (isValid) {
+            alert("Registration successful!");
+            // Here you can submit the form or perform any other action
+            // this.submit(); // Uncomment to submit the form
+          }
+        });
+
+      // Function to validate email format
+      function validateEmail(email) {
+        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return re.test(email);
+      }
+
+      // Function to show error messages
+      function showError(elementId, message) {
+        const errorElement = document.getElementById(elementId);
+        errorElement.textContent = message;
+      }
+
+      // Function to clear error messages
+      function clearErrors() {
+        const errorElements = document.querySelectorAll(".error");
+        errorElements.forEach((element) => {
+          element.textContent = "";
+        });
+      }
+    </script>
+  </body>
+</html>

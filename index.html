@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather App</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+      }
+
+      .container {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 300px;
+        text-align: center;
+      }
+
+      .location-list {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+        margin-bottom: 20px;
+      }
+
+      .location-item {
+        background-color: #f0f0f0;
+        padding: 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+
+      .location-item:hover {
+        background-color: #e0e0e0;
+      }
+
+      .weather-info {
+        opacity: 0;
+        animation: fadeIn 0.5s ease forwards;
+      }
+
+      @keyframes fadeIn {
+        0% {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Weather App</h1>
+      <div class="location-list">
+        <div class="location-item" data-city="London">London</div>
+        <div class="location-item" data-city="Paris">Paris</div>
+        <div class="location-item" data-city="New York">New York</div>
+        <div class="location-item" data-city="Tokyo">Tokyo</div>
+        <div class="location-item" data-city="Sydney">Sydney</div>
+        <div class="location-item" data-city="Moscow">Moscow</div>
+        <div class="location-item" data-city="Rio de Janeiro">
+          Rio de Janeiro
+        </div>
+        <div class="location-item" data-city="Cape Town">Cape Town</div>
+        <div class="location-item" data-city="Berlin">Berlin</div>
+        <div class="location-item" data-city="Mumbai">Mumbai</div>
+      </div>
+      <div class="weather-info">
+        <h2 id="location"></h2>
+        <p id="temperature"></p>
+        <p id="description"></p>
+        <p id="humidity"></p>
+        <p id="windSpeed"></p>
+      </div>
+    </div>
+    <script>
+      const apiKey = "YOUR_API_KEY"; // Replace with your OpenWeatherMap API key
+      const apiUrl = "https://api.openweathermap.org/data/2.5/weather";
+
+      const locationList = document.querySelectorAll(".location-item");
+      const locationElement = document.getElementById("location");
+      const temperatureElement = document.getElementById("temperature");
+      const descriptionElement = document.getElementById("description");
+      const humidityElement = document.getElementById("humidity");
+      const windSpeedElement = document.getElementById("windSpeed");
+
+      locationList.forEach((location) => {
+        location.addEventListener("click", () => {
+          const city = location.dataset.city;
+          fetchWeather(city);
+        });
+      });
+
+      function fetchWeather(location) {
+        const url = `${apiUrl}?q=${location}&appid=${apiKey}&units=metric`;
+
+        fetch(url)
+          .then((response) => {
+            if (!response.ok) {
+              // Instead of alerting the error, we simply return without doing anything
+              return;
+            }
+            return response.json();
+          })
+          .then((data) => {
+            locationElement.textContent = `${data.name}, ${data.sys.country}`;
+            temperatureElement.textContent = `Temperature: ${Math.round(
+              data.main.temp
+            )}°C`;
+            descriptionElement.textContent = `Condition: ${data.weather[0].description}`;
+            humidityElement.textContent = `Humidity: ${data.main.humidity}%`;
+            windSpeedElement.textContent = `Wind Speed: ${data.wind.speed} m/s`;
+            document.querySelector(".weather-info").style.opacity = 1;
+          })
+          .catch((error) => {
+            console.error("Error fetching weather data:", error);
+          });
+      }
+    </script>
+  </body>
+</html>

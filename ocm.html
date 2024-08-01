@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      header {
+        background: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        text-align: center;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      nav ul li {
+        display: inline;
+        margin: 0 15px;
+      }
+
+      nav ul li a {
+        color: #fff;
+        text-decoration: none;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .card {
+        background: #fff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        margin: 20px 0;
+        padding: 20px;
+      }
+
+      h2 {
+        color: #333;
+      }
+
+      footer {
+        text-align: center;
+        padding: 10px;
+        background: #007bff;
+        color: #fff;
+        position: relative;
+        bottom: 0;
+        width: 100%;
+      }
+    </style>
+    <title>Online College Management System</title>
+  </head>
+  <body>
+    <header>
+      <h1>Online College Management System</h1>
+      <nav>
+        <ul>
+          <li><a href="#dashboard">Dashboard</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#profile">Profile</a></li>
+          <li><a href="#messages">Messages</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="dashboard">
+        <h2>Dashboard</h2>
+        <div class="card">
+          <h3>Welcome, Chaihanya Vishwamitra D A</h3>
+          <p>Your current GPA: 9.23</p>
+          <p>Upcoming Assignments: 3</p>
+        </div>
+      </section>
+
+      <section id="courses">
+        <h2>Your Courses</h2>
+        <div class="card">
+          <ul>
+            <li>Course 1: Introduction to Programming</li>
+            <li>Course 2: Data Structures</li>
+            <li>Course 3: Web Development</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="profile">
+        <h2>Your Profile</h2>
+        <div class="card">
+          <p>Name: Chaithanya Vishwamitra D A</p>
+          <p>Email: dacv2305@gmail.com</p>
+          <button onclick="editProfile()">Edit Profile</button>
+        </div>
+      </section>
+
+      <section id="messages">
+        <h2>Messages</h2>
+        <div class="card">
+          <p>No new messages.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Online College Management System</p>
+    </footer>
+
+    <script>
+      function editProfile() {
+        alert("Edit profile functionality will be implemented here.");
+      }
+    </script>
+  </body>
+</html>

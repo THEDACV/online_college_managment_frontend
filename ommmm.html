@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Crowded Marketplace</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+      }
+
+      header {
+        background: #35424a;
+        color: #ffffff;
+        padding: 10px 0;
+        text-align: center;
+      }
+
+      nav ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      nav ul li {
+        display: inline;
+        margin: 0 15px;
+      }
+
+      nav ul li a {
+        color: #ffffff;
+        text-decoration: none;
+      }
+
+      main {
+        padding: 20px;
+      }
+
+      .service {
+        background: #ffffff;
+        margin: 10px 0;
+        padding: 10px;
+        border-radius: 5px;
+      }
+
+      footer {
+        text-align: center;
+        padding: 10px 0;
+        background: #35424a;
+        color: #ffffff;
+        position: absolute;
+        width: 100%;
+        bottom: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Crowded Marketplace</h1>
+      <nav>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home">
+        <h2>Welcome to Our Marketplace</h2>
+        <p>
+          Your one-stop solution for home delivery of medicines and parcel
+          picking services.
+        </p>
+      </section>
+
+      <section id="services">
+        <h2>Our Services</h2>
+        <div class="service">
+          <h3>Medicine Home Delivery</h3>
+          <p>We offer fast and reliable home delivery of medicines.</p>
+        </div>
+        <div class="service">
+          <h3>Parcel Picking</h3>
+          <p>Convenient door-to-door parcel picking services.</p>
+        </div>
+      </section>
+
+      <section id="about">
+        <h2>About Us</h2>
+        <p>
+          We are committed to providing quality services to our subscribers.
+        </p>
+      </section>
+
+      <section id="contact">
+        <h2>Contact Us</h2>
+        <form id="contact-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">Message:</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>&copy; 2024 Crowded Marketplace. All rights reserved.</p>
+    </footer>
+
+    <script>
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", function (event) {
+          event.preventDefault(); // Prevent the default form submission
+
+          // Get form data
+          const name = document.getElementById("name").value;
+          const email = document.getElementById("email").value;
+          const message = document.getElementById("message").value;
+
+          // Display a simple alert (you can replace this with an API call)
+          alert(`Thank you, ${name}! Your message has been sent.`);
+
+          // Clear the form
+          this.reset();
+        });
+    </script>
+  </body>
+</html>
